@@ -1,15 +1,20 @@
 let libBooks = [];
-let bookIdCounter = 0;
-function Book(title, author, pages, read) {
-    this.id = bookIdCounter++;
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.info = function () {
+
+class Book{
+    static bookIdCounter = 0;
+    constructor(title, author, pages, read){
+        this.id = Book.bookIdCounter++;
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    };
+
+    info(){
         return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}.`;
     };
 }
+
 
 const BookOne = new Book('The Whisper', 'Meir Barak', '312', 'read');
 
@@ -18,9 +23,7 @@ function addBookToLibrary(title, author, pages, read) {
     const book = new Book(title, author, pages, read);
     libBooks.push(book);
     displayBook(book)
-
-    console.log(`Pushed a new book (ID ${book.id}): ` + libBooks);
-}
+};
 
 
 // JavaScript
@@ -165,6 +168,4 @@ function deleteBook(bookId, bookCardElement) {
     libBooks = libBooks.filter((book) => book.id !== bookId);
 
     bookCardElement.remove();
-    console.log(`Book deleted: ${bookId}    Updated books array:`, libBooks);
-
-}
+};
